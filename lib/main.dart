@@ -1,27 +1,21 @@
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_cart_provider/authentication/login/login_screen.dart';
+import 'package:flutter_cart_provider/firebase_options.dart';
+import 'package:flutter_cart_provider/splash_screen/splash_screen.dart';
 import 'package:provider/provider.dart';
 
-import 'home.dart';
 import 'provider/cart_provider.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,18 +28,8 @@ class _MyAppState extends State<MyApp> {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.yellow),
           useMaterial3: true,
         ),
-        home: const Home(),
+        home: const SplashScreen(),
       ),
-    );
-  }
-
-  void checkUser() {
-    User? user = FirebaseAuth.instance.currentUser;
-    Navigator.of(context).pushAndRemoveUntil(
-      MaterialPageRoute(
-          builder: (context) =>
-              user != null ? const Home() : const LoginScreen()),
-      (route) => false,
     );
   }
 }

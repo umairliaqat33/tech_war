@@ -38,75 +38,77 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Padding(
-          padding: EdgeInsets.only(
-            left: SizeConfig.width15(context),
-            right: SizeConfig.width15(context),
-          ),
-          child: Form(
-            key: _formKey,
-            child: SingleChildScrollView(
-              child: Column(
-                children: <Widget>[
-                  SizedBox(
-                    height: SizeConfig.height20(context) * 7,
-                  ),
-                  Column(
-                    children: [
-                      TextFormFieldWidget(
-                        label: 'Email',
-                        controller: _emailController,
-                        validator: (value) => Utils.emailValidator(value),
-                        hintText: "Johndoe@gmail.com",
-                        inputType: TextInputType.emailAddress,
-                        inputAction: TextInputAction.next,
-                      ),
-                      SizedBox(
-                        height: SizeConfig.height8(context),
-                      ),
-                      PasswordTextField(controller: _passController),
-                      SizedBox(
-                        height: SizeConfig.height12(context),
-                      ),
-                      _showSpinner
-                          ? Container(
-                              margin: EdgeInsets.only(
-                                left: SizeConfig.width12(context) * 10,
-                                right: SizeConfig.width12(context) * 10,
-                              ),
-                              child: CircularProgressIndicator(
-                                color: Theme.of(context).colorScheme.primary,
-                              ),
-                            )
-                          : Container(
-                              width: double.infinity,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10)),
-                              height: 50,
-                              child: ElevatedButton(
-                                onPressed: () => signin,
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor:
-                                      Theme.of(context).colorScheme.primary,
-                                  elevation: 10,
+        body: Center(
+          child: Padding(
+            padding: EdgeInsets.only(
+              left: SizeConfig.width15(context),
+              right: SizeConfig.width15(context),
+            ),
+            child: Form(
+              key: _formKey,
+              child: SingleChildScrollView(
+                child: Column(
+                  children: <Widget>[
+                    SizedBox(
+                      height: SizeConfig.height20(context) * 7,
+                    ),
+                    Column(
+                      children: [
+                        TextFormFieldWidget(
+                          label: 'Email',
+                          controller: _emailController,
+                          validator: (value) => Utils.emailValidator(value),
+                          hintText: "Johndoe@gmail.com",
+                          inputType: TextInputType.emailAddress,
+                          inputAction: TextInputAction.next,
+                        ),
+                        SizedBox(
+                          height: SizeConfig.height8(context),
+                        ),
+                        PasswordTextField(controller: _passController),
+                        SizedBox(
+                          height: SizeConfig.height12(context),
+                        ),
+                        _showSpinner
+                            ? Container(
+                                margin: EdgeInsets.only(
+                                  left: SizeConfig.width12(context) * 10,
+                                  right: SizeConfig.width12(context) * 10,
                                 ),
-                                child: const Text('Checkout',
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      color: Colors.white,
-                                    )),
+                                child: CircularProgressIndicator(
+                                  color: Theme.of(context).colorScheme.primary,
+                                ),
+                              )
+                            : Container(
+                                width: double.infinity,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10)),
+                                height: 50,
+                                child: ElevatedButton(
+                                  onPressed: () => signin(),
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor:
+                                        Theme.of(context).colorScheme.primary,
+                                    elevation: 10,
+                                  ),
+                                  child: const Text('Sign In',
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        color: Colors.white,
+                                      )),
+                                ),
                               ),
-                            ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: SizeConfig.height20(context),
-                  ),
-                  const OtherAuthOption(
-                    optionText: 'Don\'t',
-                    authOptiontext: 'Sign up',
-                  ),
-                ],
+                      ],
+                    ),
+                    SizedBox(
+                      height: SizeConfig.height20(context),
+                    ),
+                    const OtherAuthOption(
+                      optionText: 'Don\'t',
+                      authOptiontext: 'Sign up',
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

@@ -1,5 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_cart_provider/authentication/login/login_screen.dart';
 import 'package:flutter_cart_provider/provider/cart_provider.dart';
+import 'package:flutter_cart_provider/utils/colors.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 
 import 'api/httpservice.dart';
@@ -23,6 +27,19 @@ class _HomeState extends State<Home> {
     return Scaffold(
       backgroundColor: const Color.fromRGBO(238, 238, 238, 1),
       appBar: AppBar(
+        leading: IconButton(
+            onPressed: () {
+              Fluttertoast.showToast(msg: "Log out successfull");
+              FirebaseAuth.instance.signOut();
+              Navigator.of(context).pushAndRemoveUntil(
+                MaterialPageRoute(builder: (context) => const LoginScreen()),
+                (route) => false,
+              );
+            },
+            icon: const Icon(
+              Icons.logout,
+              color: whiteColor,
+            )),
         backgroundColor: Theme.of(context).colorScheme.primary,
         elevation: 0,
         title: const Text(

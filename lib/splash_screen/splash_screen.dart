@@ -15,22 +15,11 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  // UserModel? userModel;
-
   @override
   void initState() {
     super.initState();
     _createSplash();
-    // if (AuthRepository.userLoginStatus()) {
-    //   _notificationService.firebaseNotification(context);
-    //   getUserData();
-    // }
   }
-
-  // Future<void> getUserData() async {
-  //   FirestoreController firestoreController = FirestoreController();
-  //   userModel = await firestoreController.getUserData();
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -42,11 +31,11 @@ class _SplashScreenState extends State<SplashScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                // Image.asset(
-                //   Assets.logo,
-                //   width: SizeConfig.width20(context) * 7.5,
-                //   height: SizeConfig.height20(context) * 7.5,
-                // ),
+                Image.asset(
+                  "assets/logo.jpg",
+                  width: SizeConfig.width20(context) * 7.5,
+                  height: SizeConfig.height20(context) * 7.5,
+                ),
               ],
             ),
           ),
